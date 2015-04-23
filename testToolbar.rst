@@ -43,7 +43,7 @@ Now user would like to add two links to sites he likes to visit. First he delete
 	User Should Be Able To Create New Tab
 		Create New Tab	Minun tabi
 
-
+Add links
 ------------------------
 
 Then he would like to add the links he wants to share
@@ -56,6 +56,8 @@ Then he would like to add the links he wants to share
 		Add Link	Google	www.google.fi	Suosittu hakukone
 		Add Link	Bing	www.bing.com	Vähemmän suosittu hakukone
 
+Save and view toolbar. Log out
+------------------------
 
 Almost done! Now all he has to do is save the toolbar and log out
 
