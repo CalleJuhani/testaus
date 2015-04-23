@@ -1,0 +1,69 @@
+*** Settings ***
+Library	Selenium2Library
+
+*** Variables ***
+${BROWSER}	firefox
+${DELAY}	0
+
+${URLROOT}	http://toolbar.n4sjamk.org/
+
+${VALIDUSERNAME}	pp@pp.com
+${VALIDPASSWORD}	1234
+
+*** Keywords ***
+
+Open Browser To Toolbar
+	Open Browser	${URLROOT}	${BROWSER}
+	Set Selenium Speed	${DELAY}
+
+Open Log In Dialog
+	Click Element	btnLogin
+
+Type Valid Credentials
+	Input Text	txtLoginEmail	${VALIDUSERNAME}
+	Input Text	txtLoginPassword	${VALIDPASSWORD}
+
+Click Log In
+	Click Element	xpath=//span[contains(text(), 'Log In')]
+
+Go To Toolbar From Opening Page
+	Click Element	btnTryDark
+	Click Element	xpath=//a[contains(text(), 'Exit')]
+
+Delete First Tab
+	Click Element	btnDeleteTab
+	Click Element	xpath=//span[contains(text(), 'Yes')]
+
+Create New Tab
+	[arguments]	${TABNAME}
+	Click Element	btnOpenAddTab
+	Click Element	ic_case
+	Input Text	txtTabTitle	${TABNAME}
+	Press Key	txtTabTitle	\\9
+	Press Key	dom=document.activeElement	\\13
+
+Click First Tab Active
+	Click Element	tab_0
+
+Add Link
+	[arguments]	${TITLE}	${ADDRESS}	${DESCRIPTION}
+	Click Element	btnAddBox
+	Input Text	txtBoxDesc	${TITLE}
+	Input Text	txtBoxContent	${ADDRESS}
+	Input Text	txtBoxInfo	${DESCRIPTION}
+	Press Key	txtBoxInfo	\\9
+	Press Key	dom=document.activeElement	\\13
+
+Click Save Toolbar
+	Click Element	btnCreateBar
+	Page Should Contain	Toolbar is saved
+
+View Toolbar
+	Click Element	barLink
+	Page Should Contain	Address to this Toolbar
+
+Log Out
+	Click Element	lines
+	Click Element	logout
+	Page Should Contain	Register
+	Page Should Contain	Log in
